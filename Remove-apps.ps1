@@ -1,6 +1,5 @@
 $ErrorActionPreference = 'SilentlyContinue'
 
-Write-Output "Uninstalling default apps"
 $apps = @(
     "89006A2E.AutodeskSketchBook"
     "A278AB0D.DisneyMagicKingdoms"
@@ -28,9 +27,9 @@ $apps = @(
 
 foreach ($app in $apps) {
     Write-Output "Trying to remove $app"
-    Get-AppxPackage -Name $app -AllUsers | Remove-AppxPackage -AllUsers -ErrorAction SilentlyContinue
-    Get-AppxPackage -Name $app | Remove-AppxPackage -ErrorAction SilentlyContinue
-    Get-AppxProvisionedPackage -Online | Where-Object DisplayName -EQ $app | Remove-AppxProvisionedPackage -Online -ErrorAction SilentlyContinue
+    Get-AppxPackage -Name $app -AllUsers | Remove-AppxPackage -AllUsers
+    Get-AppxPackage -Name $app | Remove-AppxPackage
+    Get-AppxProvisionedPackage -Online | Where-Object DisplayName -EQ $app | Remove-AppxProvisionedPackage -Online
 
 }
 
